@@ -200,12 +200,11 @@ object ClientOut:
             case "cancel" | "joinSeek" | "cancelSeek" | "poolIn" | "poolOut" | "hookIn" | "hookOut" =>
               Some(LobbyForward(o))
             // study
-            case "like" | "setPath" | "deleteNode" | "deleteEarlierMoves" | "promote" | "forceVariation" |
-                "setRole" | "kick" | "leave" | "shapes" | "addChapter" | "setChapter" | "editChapter" |
-                "descStudy" | "descChapter" | "deleteChapter" | "clearAnnotations" | "sortChapters" |
-                "editStudy" | "setTag" | "setComment" | "deleteComment" | "setGamebook" | "toggleGlyph" |
-                "explorerGame" | "requestAnalysis" | "invite" | "relaySync" | "setTopics" |
-                "clearVariations" =>
+            case "like" | "setPath" | "deleteNode" | "promote" | "forceVariation" | "setRole" | "kick" |
+                "leave" | "shapes" | "addChapter" | "setChapter" | "editChapter" | "descStudy" |
+                "descChapter" | "deleteChapter" | "clearAnnotations" | "sortChapters" | "editStudy" |
+                "setTag" | "setComment" | "deleteComment" | "setGamebook" | "toggleGlyph" | "explorerGame" |
+                "requestAnalysis" | "invite" | "relaySync" | "setTopics" | "clearVariations" =>
               Some(StudyForward(o))
             // round
             case "move" =>

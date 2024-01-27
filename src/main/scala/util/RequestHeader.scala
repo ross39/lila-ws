@@ -9,9 +9,10 @@ import ornicar.scalalib.zeros.given
 opaque type RequestUri = String
 object RequestUri extends OpaqueString[RequestUri]
 
-final class RequestHeader(val uri: RequestUri, headers: HttpHeaders):
+opaque type Domain = String
+object Domain extends OpaqueString[Domain]
 
-  def switch(uri: RequestUri): RequestHeader = RequestHeader(uri, headers)
+final class RequestHeader(val uri: RequestUri, headers: HttpHeaders):
 
   val (path, parameters) =
     val qsd = QueryStringDecoder(uri.value)
@@ -51,5 +52,7 @@ final class RequestHeader(val uri: RequestUri, headers: HttpHeaders):
   def ip: Option[IpAddress] = IpAddress from header("X-Forwarded-For")
 
   def name: String = s"$uri UA: $userAgent"
+
+  def domain = Domain(header(HttpHeaderNames.HOST) getOrElse "?")
 
   override def toString = s"$name origin: $origin"
